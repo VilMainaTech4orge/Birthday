@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Hey Birthday Boy! 👀💙</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="vernon.css">
+</head>
+<body>
+
+<div class="sky" id="sky" aria-hidden="true"></div>
+<canvas id="confetti" aria-hidden="true"></canvas>
+
+<main class="stage" id="wait">
+  <h1>Hey Birthday Boy! 👀💙</h1>
+  <p class="sub">Something VERY special is coming...</p>
+  <p class="sub">But you'll have to wait until October 12. 😏🎂</p>
+  <p class="sub soft">Yes... I know you're curious. 😂</p>
+
+  <div class="day-note" aria-live="polite">
+    <strong id="dayTitle">5 DAYS LEFT! 🎂</strong>
+    <span id="daySub">The countdown begins!</span>
+  </div>
+
+  <div class="togo" id="togo">5 DAYS TO GO 🎉</div>
+
+  <div class="timer" role="timer" aria-label="Time until October 12">
+    <div class="unit"><span class="num" id="d">05</span><span class="lbl">DAYS</span></div>
+    <div class="unit"><span class="num" id="h">00</span><span class="lbl">HOURS</span></div>
+    <div class="unit"><span class="num" id="m">00</span><span class="lbl">MINUTES</span></div>
+    <div class="unit"><span class="num" id="s">00</span><span class="lbl">SECONDS</span></div>
+  </div>
+  <p class="date-line">🎂 Unlocks October 12 at midnight</p>
+
+  <div class="cta-wrap">
+    <button class="tempt" id="tempt" type="button">Can I Have My Surprise Now? 🥹🎁</button>
+  </div>
+
+  <div class="bubble" id="bubble" aria-live="polite">Go on... press the button. I dare you. 😏</div>
+  <p class="counter" id="counter"></p>
+  <p class="sister">Your big sister has prepared something for you... 💙</p>
+</main>
+
+<!-- ============ BIRTHDAY REVEAL SCREEN ============ -->
+<main class="stage reveal" id="reveal" hidden>
+  <h1>🎉 IT'S YOUR BIRTHDAY!!! 🎉</h1>
+  <p class="big">HAPPY 9TH BIRTHDAY, BIRTHDAY BOY! 🥳🎂💙</p>
+  <p class="sub">THE SURPRISE IS HERE!</p>
+  <button class="enter" id="enter" type="button">🎁 ENTER YOUR BIRTHDAY SURPRISE</button>
+</main>
+
+<button class="music" id="music" type="button" aria-pressed="false">🎵 Play Birthday Music</button>
+<div class="toast" id="toast" hidden></div>
+
+<script src="vernon.js" defer></script>
+</body>
+</html>
+
+

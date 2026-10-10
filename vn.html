@@ -1,0 +1,302 @@
+html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Happy 9th Birthday! 🎂💙</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&family=Fredoka:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="birthday.css">
+</head>
+<body class="locked">
+ 
+<!-- Night sky + stars (stars are added by birthday.js) -->
+<div class="sky" id="sky" aria-hidden="true"></div>
+<canvas id="confetti" aria-hidden="true"></canvas>
+<div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
+ 
+<!-- ============================================================
+     1. THE GIFT-BOX OPENING + CURTAINS
+     ============================================================ -->
+<div class="intro" id="intro" role="dialog" aria-label="Open your birthday gift">
+  <div class="intro-glow" aria-hidden="true"></div>
+  <button class="gift" id="giftBtn" type="button" aria-label="Open your birthday gift">
+    <span class="gift-light" aria-hidden="true"></span>
+    <span class="gift-box" aria-hidden="true"></span>
+    <span class="gift-lid" aria-hidden="true"><i class="bow l"></i><i class="bow r"></i></span>
+  </button>
+  <p class="intro-hint" id="introHint">Tap the gift to open it 🎁</p>
+  <div class="intro-lines" aria-live="polite">
+    <p class="il il1">YOU MADE IT! 🥹💙</p>
+    <p class="il il2">THE WAIT IS OVER...</p>
+    <p class="il il3">IT'S FINALLY YOUR DAY!</p>
+  </div>
+  <div class="curtain left" aria-hidden="true"></div>
+  <div class="curtain right" aria-hidden="true"></div>
+</div>
+ 
+<!-- ============================================================
+     2. THE GRAND REVEAL
+     ============================================================ -->
+<header class="hero" id="hero">
+  <div class="balloons" id="balloons" aria-hidden="true"></div>
+ 
+  <p class="hero-eyebrow">October 12 ✨</p>
+  <h1 class="hero-title">
+    <span class="ht1">HAPPY 9TH BIRTHDAY,</span>
+    <span class="ht2">MY LITTLE BROTHER! 🎂💙</span>
+  </h1>
+ 
+  <!-- Birthday cake illustration (drawn in SVG — no image file needed) -->
+  <svg class="cake" viewBox="0 0 240 220" role="img" aria-label="A birthday cake with three candles">
+    <defs>
+      <linearGradient id="cakeA" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#5d86ff"/><stop offset="1" stop-color="#2347c4"/></linearGradient>
+      <linearGradient id="cakeB" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#86c8ff"/><stop offset="1" stop-color="#4f93e8"/></linearGradient>
+      <linearGradient id="cakeC" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#c9dcff"/></linearGradient>
+    </defs>
+    <ellipse cx="120" cy="204" rx="104" ry="11" fill="#d9e4f5" opacity=".9"/>
+    <rect x="30" y="140" width="180" height="62" rx="14" fill="url(#cakeA)"/>
+    <path d="M30 154 q15 16 30 0 q15 16 30 0 q15 16 30 0 q15 16 30 0 q15 16 30 0 q15 16 30 0 v-14 h-180z" fill="url(#cakeC)"/>
+    <rect x="58" y="92" width="124" height="52" rx="12" fill="url(#cakeB)"/>
+    <path d="M58 104 q15.5 15 31 0 q15.5 15 31 0 q15.5 15 31 0 q15.5 15 31 0 v-12 h-124z" fill="url(#cakeC)"/>
+    <text x="120" y="188" text-anchor="middle" font-family="Fredoka, sans-serif" font-weight="700" font-size="40" fill="#fff">9</text>
+    <circle cx="48" cy="178" r="4" fill="#3be3ff"/><circle cx="192" cy="176" r="4" fill="#8b6cff"/>
+    <circle cx="82" cy="124" r="3.5" fill="#fff"/><circle cx="158" cy="126" r="3.5" fill="#fff"/>
+    <g class="candles">
+      <rect x="86" y="62" width="9" height="32" rx="3" fill="#8b6cff"/>
+      <rect x="115" y="56" width="9" height="38" rx="3" fill="#3be3ff"/>
+      <rect x="145" y="62" width="9" height="32" rx="3" fill="#ffffff"/>
+      <ellipse class="flame f1" cx="90.5" cy="54" rx="5" ry="9" fill="#ffd84d"/>
+      <ellipse class="flame f2" cx="119.5" cy="48" rx="5" ry="9" fill="#ffd84d"/>
+      <ellipse class="flame f3" cx="149.5" cy="54" rx="5" ry="9" fill="#ffd84d"/>
+    </g>
+  </svg>
+ 
+  <!-- ✏️ EDIT: this short message under the cake -->
+  <p class="hero-msg">
+    Today isn't just about turning nine. It's about celebrating nine beautiful years of your life,
+    all the memories you've given us, and the amazing person you're becoming.
+  </p>
+  <button class="btn-glow" id="enterBtn" type="button">Enter Your Birthday World ✨</button>
+  <p class="hero-tip">🎵 Tap the music button in the corner whenever you like.</p>
+</header>
+ 
+<main>
+ 
+<!-- ============================================================
+     3. THE STORY — chapters are built by birthday.js from the
+        CHAPTERS list (your photos + your voice recordings).
+     ============================================================ -->
+<section class="story" id="story" aria-labelledby="storyTitle">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <p class="kicker">A movie made from our memories 🎬</p>
+      <h2 id="storyTitle">YOUR STORY, THROUGH MY EYES 💙</h2>
+    </div>
+    <div id="chapters"><!-- chapters appear here --></div>
+  </div>
+</section>
+ 
+<!-- ============================================================
+     4. THE LETTER FROM HIS BIG SISTER
+     ============================================================ -->
+<section class="letter-sec" id="letter" aria-labelledby="letterTitle">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <p class="kicker">Something for you to open 💌</p>
+      <h2 id="letterTitle">A LETTER FROM YOUR BIG SISTER</h2>
+    </div>
+ 
+    <button class="envelope reveal" id="envelope" type="button" aria-expanded="false" aria-controls="letterPaper">
+      <span class="env-back"></span>
+      <span class="env-card"></span>
+      <span class="env-front"></span>
+      <span class="env-flap"></span>
+      <span class="env-heart">💙</span>
+      <span class="env-hint">Tap to open</span>
+    </button>
+ 
+    <!--
+      ✏️ EDIT THE LETTER BELOW.
+      Each <p> is one paragraph. It fades in one after the other.
+      Yellow dashed boxes (class="edit-me") are reminders — replace the
+      whole <span> with your own memory or detail, or delete it.
+    -->
+    <article class="paper" id="letterPaper" hidden>
+      <p>Dear Birthday Boy,</p>
+      <p>I sat down to write this and the first thing I thought was: <em>how are you already nine?!</em> It feels like the fastest blink in the whole world.</p>
+      <p>You are so precious to me. More precious than I know how to say with words, so I'm trying with a whole website instead. 😂</p>
+      <p>Watching you grow up has been one of the best parts of my whole life. Every year you get a little taller, a little braver, and a little more like <em>you</em>.</p>
+      <p>Every memory we share, the big ones and the silly little ones, is a treasure I keep safe in my heart.
+      <p>I am so proud of the boy you are becoming, and I can't wait to see everything you do.</p>
+      <p>As you grow, I'll keep cheering for you. In the front row. The loudest one. Even when it's a little bit embarrassing. 📣</p>
+      <p>And please never forget this: our whole family loves you so deeply. You are never, ever alone.</p>
+      <p class="sign">Forever your big sister,<br><span class="edit-me">✏️ Lovely Vilma</span> 💙</p>
+    </article>
+ 
+    <!-- Optional: her voice reading the letter (audio/birthday-message.mp3) -->
+    <div class="player-slot reveal" data-audio="images/vernon/letter.mp3" data-label="Listen to my letter"></div>
+  </div>
+</section>
+ 
+<!-- ============================================================
+     5. NINE REASONS
+     ✏️ EDIT: the text inside each <span class="rc-msg"> is the
+        message on the back of the card. Make them even more personal
+        by adding a real example about him!
+     ============================================================ -->
+<section class="reasons" id="reasons" aria-labelledby="reasonsTitle">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <p class="kicker">Tap each card 🎁</p>
+      <h2 id="reasonsTitle">NINE YEARS OF YOU. NINE REASONS TO CELEBRATE YOU. 💙</h2>
+    </div>
+    <div class="cards" id="cards">
+ 
+      <button class="rcard c1 reveal" type="button" aria-pressed="false"><span class="rc-inner">
+        <span class="rc-face rc-front"><span class="rc-num">1</span><span class="rc-emoji">🌟</span><span class="rc-title">You're one of a kind</span></span>
+        <span class="rc-face rc-back"><span class="rc-msg">There is nobody else in the whole world like you. Your way of seeing things, your style, your little ways: they're yours alone. Never change them just to fit in.</span></span></span></button>
+ 
+      <button class="rcard c2 reveal" type="button" aria-pressed="false"><span class="rc-inner">
+        <span class="rc-face rc-front"><span class="rc-num">2</span><span class="rc-emoji">😂</span><span class="rc-title">Your laughter</span></span>
+        <span class="rc-face rc-back"><span class="rc-msg">Your laugh can change the mood of a whole room. When you laugh, everyone around you ends up smiling too, even when they don't know why.</span></span></span></button>
+ 
+      <button class="rcard c3 reveal" type="button" aria-pressed="false"><span class="rc-inner">
+        <span class="rc-face rc-front"><span class="rc-num">3</span><span class="rc-emoji">🔭</span><span class="rc-title">Your curiosity</span></span>
+        <span class="rc-face rc-back"><span class="rc-msg">You wonder about things and want to know how the world works. Keep asking questions. Curious people grow up to discover amazing things.</span></span></span></button>
+ 
+      <button class="rcard c4 reveal" type="button" aria-pressed="false"><span class="rc-inner">
+        <span class="rc-face rc-front"><span class="rc-num">4</span><span class="rc-emoji">🦁</span><span class="rc-title">Your courage</span></span>
+        <span class="rc-face rc-back"><span class="rc-msg">Being brave doesn't mean you're never scared. It means you try anyway. You have more courage inside you than you realise.</span></span></span></button>
+ 
+      <button class="rcard c5 reveal" type="button" aria-pressed="false"><span class="rc-inner">
+        <span class="rc-face rc-front"><span class="rc-num">5</span><span class="rc-emoji">💙</span><span class="rc-title">Your kind heart</span></span>
+        <span class="rc-face rc-back"><span class="rc-msg">A kind heart is the strongest thing a person can have. Be the boy who notices when someone is sad, and who shares his smile.</span></span></span></button>
+ 
+      <button class="rcard c6 reveal" type="button" aria-pressed="false"><span class="rc-inner">
+        <span class="rc-face rc-front"><span class="rc-num">6</span><span class="rc-emoji">🚀</span><span class="rc-title">Your potential</span></span>
+        <span class="rc-face rc-back"><span class="rc-msg">You are only nine and there is already so much inside you. Your talents are still unfolding, and the best is still ahead.</span></span></span></button>
+ 
+      <button class="rcard c7 reveal" type="button" aria-pressed="false"><span class="rc-inner">
+        <span class="rc-face rc-front"><span class="rc-num">7</span><span class="rc-emoji">🏠</span><span class="rc-title">Our family bond</span></span>
+        <span class="rc-face rc-back"><span class="rc-msg">You're one of the biggest reasons our family feels like home. We are on your team, always, in good days and hard days.</span></span></span></button>
+ 
+      <button class="rcard c8 reveal" type="button" aria-pressed="false"><span class="rc-inner">
+        <span class="rc-face rc-front"><span class="rc-num">8</span><span class="rc-emoji">🌙</span><span class="rc-title">Your dreams</span></span>
+        <span class="rc-face rc-back"><span class="rc-msg">Dream big, even the dreams that feel too big to say out loud. Dreams are like seeds: with time and effort, they grow.</span></span></span></button>
+ 
+      <button class="rcard c9 reveal" type="button" aria-pressed="false"><span class="rc-inner">
+        <span class="rc-face rc-front"><span class="rc-num">9</span><span class="rc-emoji">🎉</span><span class="rc-title">You, just being you</span></span>
+        <span class="rc-face rc-back"><span class="rc-msg">Having you in our lives is one of the greatest joys we've ever been given. You make ordinary days brighter just by being you.</span></span></span></button>
+    </div>
+    <p class="cards-msg" id="cardsMsg" aria-live="polite">Cards opened: 0 / 9</p>
+  </div>
+</section>
+ 
+<!-- ============================================================
+     6. THE PRAYER
+     ✏️ EDIT: change the words so they sound like your family.
+     ============================================================ -->
+<section class="prayer" id="prayer" aria-labelledby="prayerTitle">
+  <div class="prayer-glow" aria-hidden="true"></div>
+  <div class="wrap narrow">
+    <div class="section-head reveal">
+      <p class="kicker">Quiet time 🌙</p>
+      <h2 id="prayerTitle">A PRAYER FOR YOUR NEW YEAR WITH GOD 🙏</h2>
+    </div>
+    <div class="prayer-card reveal">
+      <p>Dear God,</p>
+      <p>Thank you for my little brother. Thank you for nine years of his life, and for all the joy he brings to our family.</p>
+      <p>As he begins his ninth year, please keep him safe and protect him wherever he goes.</p>
+      <p>Give him wisdom to make good choices, and good health to run, play and grow strong.</p>
+      <p>Fill his heart with happiness. Help him be kind to everyone he meets, and brave when things feel hard.</p>
+      <p>Bless him with good friends who love and care for him.</p>
+      <p>Help him grow in his body, in his mind, and in his heart. Teach him to love You, and to love others the way You love us.</p>
+      <p>Be with him in every happy moment, and in every moment he feels worried or alone. Remind him that You are always near, and that he is deeply loved.</p>
+      <p class="amen">Amen. 🙏</p>
+    </div>
+  </div>
+</section>
+ 
+<!-- ============================================================
+     7. LEVEL 9 MISSIONS
+     ✏️ EDIT: change, add or remove <button class="mission"> lines.
+     ============================================================ -->
+<section class="level" id="level" aria-labelledby="levelTitle">
+  <div class="wrap narrow">
+    <div class="section-head reveal">
+      <p class="kicker">New game. New year. 🎮</p>
+      <h2 id="levelTitle">YOUR LEVEL 9 UNLOCKED! 🚀</h2>
+      <p class="section-sub">Complete your birthday missions. Tap each one when it's done!</p>
+    </div>
+ 
+    <div class="bar reveal" role="progressbar" aria-label="Missions completed" aria-valuemin="0" aria-valuemax="5" aria-valuenow="0" id="missionBar">
+      <div class="bar-fill" id="barFill"></div>
+      <span class="rocket" id="rocket" aria-hidden="true">🚀</span>
+    </div>
+    <p class="mission-count" id="missionCount">0 / 5 missions complete</p>
+ 
+    <div class="missions" id="missions">
+      <button class="mission reveal" type="button" aria-pressed="false"><span class="check" aria-hidden="true"></span><span>Smile at someone you love today. 😊</span></button>
+      <button class="mission reveal" type="button" aria-pressed="false"><span class="check" aria-hidden="true"></span><span>Tell someone in your family something you appreciate about them. 💬</span></button>
+      <button class="mission reveal" type="button" aria-pressed="false"><span class="check" aria-hidden="true"></span><span>Dream of one thing you want to learn this year. 🌠</span></button>
+      <button class="mission reveal" type="button" aria-pressed="false"><span class="check" aria-hidden="true"></span><span>Remember that you are loved, even on difficult days. 💙</span></button>
+      <button class="mission reveal" type="button" aria-pressed="false"><span class="check" aria-hidden="true"></span><span>Make one beautiful memory today. 📸</span></button>
+    </div>
+    <p class="mission-win" id="missionWin" aria-live="polite" hidden>🎉 LEVEL 9 COMPLETE! You're officially ready for an amazing year. 🎉</p>
+  </div>
+</section>
+ 
+<!-- ============================================================
+     8. THE FINAL SCENE
+     ✏️ EDIT: the four message lines are below.
+        The photos in the collage are chosen in birthday.js (FINALE_PHOTOS).
+     ============================================================ -->
+<section class="finale" id="finale" aria-labelledby="finaleTitle">
+  <div class="finale-sky" id="finaleSky" aria-hidden="true"></div>
+  <div class="wrap">
+    <div class="section-head reveal">
+      <p class="kicker">The final scene 🎬</p>
+      <h2 id="finaleTitle">FROM MY HEART TO YOURS 💙</h2>
+    </div>
+ 
+    <div class="collage" id="collage"><!-- built by birthday.js --></div>
+ 
+    <div class="finale-text" id="finaleText">
+      <p class="f-line">YOU WILL GROW UP, DISCOVER THE WORLD, CHASE BIG DREAMS, AND BECOME YOUR OWN AMAZING PERSON...</p>
+      <p class="f-line">BUT NO MATTER HOW OLD YOU GET, YOU WILL ALWAYS BE MY LITTLE BROTHER. 💙</p>
+      <h3 class="f-line f-big">HAPPY 9TH BIRTHDAY, MY FAVOURITE LITTLE BROTHER! 🎂🎉</h3>
+      <p class="f-line f-love">I LOVE YOU MORE THAN WORDS CAN EVER EXPLAIN.</p>
+    </div>
+ 
+    <button class="btn-glow replay" id="replayBtn" type="button">Replay Our Story 💙</button>
+  </div>
+</section>
+ 
+</main>
+ 
+<!-- ============================================================
+     FLOATING MUSIC CONTROL
+     ============================================================ -->
+<div class="music" id="music" role="group" aria-label="Background music">
+  <p class="music-hint" id="musicHint">Tap to play music 🎵</p>
+  <button class="mu-btn" id="muPlay" type="button" aria-label="Play background music">▶</button>
+  <button class="mu-btn" id="muMute" type="button" aria-label="Mute background music">🔊</button>
+  <input class="mu-vol" id="muVol" type="range" min="0" max="100" value="50" aria-label="Music volume">
+</div>
+ 
+<!-- FULL-SCREEN PHOTO VIEWER -->
+<div class="lightbox" id="lightbox" hidden role="dialog" aria-modal="true" aria-label="Photo viewer">
+  <button class="lb-btn lb-close" id="lbClose" type="button" aria-label="Close photo">✕</button>
+  <button class="lb-btn lb-prev" id="lbPrev" type="button" aria-label="Previous photo"></button>
+  <figure class="lb-fig">
+    <img id="lbImg" alt="">
+    <figcaption id="lbCap"></figcaption>
+  </figure>
+  <button class="lb-btn lb-next" id="lbNext" type="button" aria-label="Next photo"></button>
+</div>
+ 
+<script src="birthday.js"></script>
+</body>
+</html>
+ 
